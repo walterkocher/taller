@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WeGo! — Comparte tu ruta en Temuco</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="#">WeGo<span>!</span></a>
+      <div class="nav-links">
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#seguridad">Seguridad</a>
+        <button class="btn btn-outline" onclick="openModal('login-modal')">Ingresar</button>
+        <button class="btn btn-primary" onclick="openModal('register-modal')">Registrarse</button>
+      </div>
+      <button class="nav-burger" onclick="toggleMenu()" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="nav-mobile">
+      <a href="#como-funciona" onclick="toggleMenu()">Cómo funciona</a>
+      <a href="#seguridad" onclick="toggleMenu()">Seguridad</a>
+      <button class="btn btn-outline" onclick="toggleMenu(); openModal('login-modal')">Ingresar</button>
+      <button class="btn btn-primary" onclick="toggleMenu(); openModal('register-modal')">Registrarse</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">🚗 Ya disponible en Temuco</div>
+      <h1 class="hero-title">Comparte el camino,<br /><em>divide el costo</em></h1>
+      <p class="hero-sub">WeGo! conecta conductores y pasajeros que van en la misma dirección dentro de la ciudad. Más económico que un taxi, más flexible que el transporte público.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary btn-lg" onclick="switchApp('passenger')">Busco un viaje</button>
+        <button class="btn btn-outline btn-lg" onclick="switchApp('driver')">Ofrezco un viaje</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong>2.400+</strong><span>viajes compartidos</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>4.8★</strong><span>calificación promedio</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>$890</strong><span>ahorro promedio por viaje</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="map-card">
+        <div class="map-header">
+          <span class="map-city">📍 Temuco</span>
+          <span class="map-live">● En vivo</span>
+        </div>
+        <div class="map-body">
+          <svg class="route-svg" viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
+            <!-- Streets background -->
+            <line x1="0" y1="110" x2="300" y2="110" stroke="#E8E4DF" stroke-width="8"/>
+            <line x1="150" y1="0" x2="150" y2="220" stroke="#E8E4DF" stroke-width="8"/>
+            <line x1="0" y1="55" x2="300" y2="55" stroke="#F0EDE8" stroke-width="4"/>
+            <line x1="0" y1="165" x2="300" y2="165" stroke="#F0EDE8" stroke-width="4"/>
+            <line x1="75" y1="0" x2="75" y2="220" stroke="#F0EDE8" stroke-width="4"/>
+            <line x1="225" y1="0" x2="225" y2="220" stroke="#F0EDE8" stroke-width="4"/>
+            <!-- Route path -->
+            <path class="route-path" d="M 50 170 L 50 110 L 150 110 L 150 50 L 250 50" stroke="#FF6B35" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Start point -->
+            <circle cx="50" cy="170" r="8" fill="#FF6B35"/>
+            <circle cx="50" cy="170" r="14" fill="#FF6B35" opacity="0.2" class="pulse"/>
+            <!-- End point -->
+            <circle cx="250" cy="50" r="8" fill="#1A1A1A"/>
+            <!-- Car icon -->
+            <g class="car-icon" transform="translate(50,110)">
+              <rect x="-10" y="-7" width="20" height="13" rx="3" fill="#FF6B35"/>
+              <rect x="-6" y="-12" width="12" height="7" rx="2" fill="#FF6B35"/>
+              <circle cx="-5" cy="6" r="3" fill="#1A1A1A"/>
+              <circle cx="5" cy="6" r="3" fill="#1A1A1A"/>
+            </g>
+            <!-- Labels -->
+            <text x="50" y="190" text-anchor="middle" font-size="9" fill="#666" font-family="Inter">Plaza Anibal P.</text>
+            <text x="250" y="40" text-anchor="middle" font-size="9" fill="#666" font-family="Inter">Mall Arauco</text>
+          </svg>
+        </div>
+        <div class="map-riders">
+          <div class="rider-chip">
+            <img src="https://api.dicebear.com/7.x/thumbs/svg?seed=carlos&backgroundColor=FF6B35" alt="Carlos" class="rider-avatar"/>
+            <div class="rider-info">
+              <strong>Carlos M.</strong>
+              <span>Sale en 8 min · $800</span>
+            </div>
+            <div class="rider-badge verified">✓</div>
+          </div>
+          <div class="rider-chip">
+            <img src="https://api.dicebear.com/7.x/thumbs/svg?seed=valentina&backgroundColor=FFB085" alt="Valentina" class="rider-avatar"/>
+            <div class="rider-info">
+              <strong>Valentina R.</strong>
+              <span>Sale en 15 min · $700</span>
+            </div>
+            <div class="rider-badge verified">✓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="section" id="como-funciona">
+    <div class="section-inner">
+      <div class="section-label">Simple y rápido</div>
+      <h2 class="section-title">¿Cómo funciona WeGo!?</h2>
+      <div class="tabs-toggle">
+        <button class="tab-btn active" onclick="switchHow('driver', this)">Soy conductor</button>
+        <button class="tab-btn" onclick="switchHow('passenger', this)">Busco viaje</button>
+      </div>
+      <div class="steps" id="steps-driver">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>Publica tu ruta</h3>
+            <p>Ingresa tu destino y a qué hora sales. WeGo! traza tu recorrido automáticamente.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>Recibe solicitudes</h3>
+            <p>Los pasajeros en tu ruta te contactan. Tú decides a quién aceptar según su perfil y calificación.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>Acuerdan el punto de encuentro</h3>
+            <p>WeGo! sugiere un punto público cercano: esquina, paradero o lugar conocido. Seguro y conveniente.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h3>Viajan y se califican</h3>
+            <p>Al llegar, ambos se califican. Tu reputación crece con cada viaje y atraes mejores pasajeros.</p>
+          </div>
+        </div>
+      </div>
+      <div class="steps hidden" id="steps-passenger">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>Ingresa tu destino</h3>
+            <p>¿A dónde vas? WeGo! busca conductores que ya vayan en esa dirección o por rutas cercanas.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>Elige tu conductor</h3>
+            <p>Filtra por precio, horario, calificación o activa el Modo Mujer para ver solo conductoras.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>Confirma y coordina</h3>
+            <p>Chatea directamente con el conductor, acuerdan el punto de encuentro y comparte tu ruta con un contacto de confianza.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h3>Viaja y califica</h3>
+            <p>Llega a tu destino por menos. Al finalizar, califica el viaje y acumula reputación como pasajero.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APP DEMO -->
+  <section class="section section-app" id="demo">
+    <div class="section-inner">
+      <div class="section-label">Demo interactivo</div>
+      <h2 class="section-title">Pruébala ahora</h2>
+      <div class="app-switcher">
+        <button class="role-btn active" id="btn-passenger" onclick="switchApp('passenger')">
+          <span class="role-icon">🧍</span> Soy pasajero
+        </button>
+        <button class="role-btn" id="btn-driver" onclick="switchApp('driver')">
+          <span class="role-icon">🚗</span> Soy conductor
+        </button>
+      </div>
+
+      <!-- PASSENGER FLOW -->
+      <div class="app-frame" id="app-passenger">
+        <div class="phone-shell">
+          <div class="phone-header">
+            <div class="phone-status">
+              <span>WeGo!</span>
+              <span>9:41</span>
+            </div>
+          </div>
+          <div class="phone-screen" id="passenger-screen">
+            <!-- Step 1: Search -->
+            <div class="p-screen active" id="p-search">
+              <div class="screen-header">
+                <h3>¿A dónde vas?</h3>
+                <div class="womens-mode-toggle">
+                  <span>Modo mujer</span>
+                  <label class="toggle">
+                    <input type="checkbox" id="womens-mode" onchange="toggleWomensMode()"/>
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+              </div>
+              <div class="search-box">
+                <div class="search-field">
+                  <span class="dot dot-orange"></span>
+                  <input type="text" id="origin-input" placeholder="¿Desde dónde sales?" value="Plaza Aníbal Pinto" readonly/>
+                </div>
+                <div class="search-divider-line"></div>
+                <div class="search-field">
+                  <span class="dot dot-dark"></span>
+                  <input type="text" id="dest-input" placeholder="¿A dónde vas?" />
+                </div>
+              </div>
+              <div class="quick-destinations">
+                <p class="quick-label">Destinos frecuentes</p>
+                <div class="quick-chips">
+                  <button class="chip" onclick="setDestination('Mall Arauco Temuco')">🛍 Mall Arauco</button>
+                  <button class="chip" onclick="setDestination('Hospital Hernán Henríquez')">🏥 Hospital HHA</button>
+                  <button class="chip" onclick="setDestination('Universidad de La Frontera')">🎓 UFRO</button>
+                  <button class="chip" onclick="setDestination('Terminal de Buses Rurales')">🚌 Terminal Buses</button>
+                  <button class="chip" onclick="setDestination('Costanera Center Temuco')">🏬 Costanera</button>
+                </div>
+              </div>
+              <button class="btn btn-primary btn-full" onclick="searchRides()">Buscar viajes →</button>
+            </div>
+
+            <!-- Step 2: Results -->
+            <div class="p-screen" id="p-results">
+              <div class="screen-header-back">
+                <button class="back-btn" onclick="showScreen('passenger', 'p-search')">←</button>
+                <div class="results-title">
+                  <h3 id="results-heading">Viajes disponibles</h3>
+                  <span id="results-count" class="results-badge">4 encontrados</span>
+                </div>
+              </div>
+              <div class="filter-row">
+                <button class="filter-chip active" onclick="filterRides('all', this)">Todos</button>
+                <button class="filter-chip" onclick="filterRides('cheap', this)">Más barato</button>
+                <button class="filter-chip" onclick="filterRides('fast', this)">Más cercano</button>
+                <button class="filter-chip" onclick="filterRides('top', this)">Mejor rating</button>
+              </div>
+              <div class="rides-list" id="rides-list"></div>
+            </div>
+
+            <!-- Step 3: Driver profile -->
+            <div class="p-screen" id="p-profile">
+              <div class="screen-header-back">
+                <button class="back-btn" onclick="showScreen('passenger', 'p-results')">←</button>
+                <h3>Perfil del conductor</h3>
+              </div>
+              <div class="driver-profile-card" id="driver-profile-card"></div>
+              <div class="profile-actions">
+                <button class="btn btn-outline btn-full" onclick="openChat()">💬 Enviar mensaje</button>
+                <button class="btn btn-primary btn-full" onclick="confirmRide()">Solicitar viaje</button>
+              </div>
+            </div>
+
+            <!-- Step 4: Confirmed -->
+            <div class="p-screen" id="p-confirmed">
+              <div class="confirmed-screen">
+                <div class="confirmed-icon">🎉</div>
+                <h3>¡Viaje confirmado!</h3>
+                <p>Tu conductor está en camino al punto de encuentro</p>
+                <div class="meet-point">
+                  <span class="meet-icon">📍</span>
+                  <div>
+                    <strong>Punto de encuentro</strong>
+                    <p>Esquina Bulnes con Aldunate — frente a farmacia Cruz Verde</p>
+                  </div>
+                </div>
+                <div class="tracking-cta">
+                  <button class="btn btn-outline btn-full" onclick="shareTrip()">📤 Compartir mi viaje</button>
+                </div>
+                <div class="eta-bar">
+                  <span>Conductor llega en</span>
+                  <strong id="eta-counter">6:00</strong>
+                </div>
+                <button class="btn btn-primary btn-full" onclick="finishRide()">Simular llegada →</button>
+              </div>
+            </div>
+
+            <!-- Step 5: Rating -->
+            <div class="p-screen" id="p-rating">
+              <div class="rating-screen">
+                <div class="rating-icon">⭐</div>
+                <h3>¿Cómo fue el viaje?</h3>
+                <p>Tu calificación ayuda a otros usuarios</p>
+                <div class="star-rating" id="star-rating">
+                  <span class="star" onclick="setRating(1)">★</span>
+                  <span class="star" onclick="setRating(2)">★</span>
+                  <span class="star" onclick="setRating(3)">★</span>
+                  <span class="star" onclick="setRating(4)">★</span>
+                  <span class="star" onclick="setRating(5)">★</span>
+                </div>
+                <textarea class="rating-comment" placeholder="¿Algo que destacar? (opcional)"></textarea>
+                <button class="btn btn-primary btn-full" onclick="submitRating()">Enviar calificación</button>
+              </div>
+            </div>
+
+            <!-- Step 6: Done -->
+            <div class="p-screen" id="p-done">
+              <div class="done-screen">
+                <div class="done-icon">✅</div>
+                <h3>¡Gracias por viajar con WeGo!</h3>
+                <div class="savings-card">
+                  <span>Ahorraste</span>
+                  <strong>$1.200</strong>
+                  <span>vs un taxi</span>
+                </div>
+                <div class="points-card">
+                  <span>🏆 Ganaste 15 puntos de reputación</span>
+                </div>
+                <button class="btn btn-primary btn-full" onclick="resetPassenger()">Buscar otro viaje</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DRIVER FLOW -->
+      <div class="app-frame hidden" id="app-driver">
+        <div class="phone-shell">
+          <div class="phone-header">
+            <div class="phone-status">
+              <span>WeGo!</span>
+              <span>9:41</span>
+            </div>
+          </div>
+          <div class="phone-screen" id="driver-screen">
+
+            <!-- Step 1: Publish -->
+            <div class="d-screen active" id="d-publish">
+              <div class="screen-header">
+                <h3>Publica tu ruta</h3>
+              </div>
+              <div class="form-group">
+                <label>¿Desde dónde sales?</label>
+                <div class="search-field">
+                  <span class="dot dot-orange"></span>
+                  <input type="text" value="Mi ubicación actual" readonly/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>¿A dónde vas?</label>
+                <div class="search-field">
+                  <span class="dot dot-dark"></span>
+                  <select id="driver-dest" class="dest-select">
+                    <option value="">Selecciona destino</option>
+                    <option value="Mall Arauco Temuco">Mall Arauco Temuco</option>
+                    <option value="Universidad de La Frontera">Universidad de La Frontera</option>
+                    <option value="Hospital Hernán Henríquez">Hospital Hernán Henríquez</option>
+                    <option value="Terminal de Buses Rurales">Terminal de Buses Rurales</option>
+                    <option value="Costanera Center Temuco">Costanera Center Temuco</option>
+                    <option value="Estadio Germán Becker">Estadio Germán Becker</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group half">
+                  <label>¿Cuándo sales?</label>
+                  <input type="time" id="depart-time" value="09:30"/>
+                </div>
+                <div class="form-group half">
+                  <label>Asientos disponibles</label>
+                  <div class="seat-counter">
+                    <button onclick="changeSeat(-1)">−</button>
+                    <span id="seat-count">2</span>
+                    <button onclick="changeSeat(1)">+</button>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Precio sugerido por WeGo!</label>
+                <div class="price-suggest">
+                  <span class="price-tag" id="suggested-price">$800</span>
+                  <span class="price-note">Calculado según distancia y demanda</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Preferencias</label>
+                <div class="prefs-row">
+                  <label class="pref-check"><input type="checkbox" checked/> Acepto mujeres</label>
+                  <label class="pref-check"><input type="checkbox"/> Solo mujeres</label>
+                  <label class="pref-check"><input type="checkbox" checked/> Permito mascotas</label>
+                  <label class="pref-check"><input type="checkbox" checked/> Música en ruta</label>
+                </div>
+              </div>
+              <button class="btn btn-primary btn-full" onclick="publishRoute()">Publicar ruta →</button>
+            </div>
+
+            <!-- Step 2: Waiting -->
+            <div class="d-screen" id="d-waiting">
+              <div class="screen-header-back">
+                <button class="back-btn" onclick="showScreen('driver', 'd-publish')">←</button>
+                <h3>Ruta publicada</h3>
+              </div>
+              <div class="published-card">
+                <div class="pub-route">
+                  <span class="dot dot-orange"></span>
+                  <span>Mi ubicación</span>
+                </div>
+                <div class="pub-line"></div>
+                <div class="pub-route">
+                  <span class="dot dot-dark"></span>
+                  <span id="pub-dest-label">Mall Arauco</span>
+                </div>
+              </div>
+              <div class="waiting-indicator">
+                <div class="spinner"></div>
+                <p>Buscando pasajeros en tu ruta...</p>
+              </div>
+              <div class="incoming-requests" id="incoming-requests">
+                <!-- Requests appear here -->
+              </div>
+              <button class="btn btn-outline btn-full" onclick="simulateRequest()">⚡ Simular solicitud entrante</button>
+            </div>
+
+            <!-- Step 3: Request detail -->
+            <div class="d-screen" id="d-request">
+              <div class="screen-header-back">
+                <button class="back-btn" onclick="showScreen('driver', 'd-waiting')">←</button>
+                <h3>Nueva solicitud</h3>
+              </div>
+              <div class="request-card" id="request-card"></div>
+              <div class="request-actions">
+                <button class="btn btn-outline btn-full" style="border-color:#e53e3e; color:#e53e3e" onclick="rejectRequest()">Rechazar</button>
+                <button class="btn btn-primary btn-full" onclick="acceptRequest()">Aceptar pasajero</button>
+              </div>
+            </div>
+
+            <!-- Step 4: Accepted -->
+            <div class="d-screen" id="d-accepted">
+              <div class="accepted-screen">
+                <div class="accepted-icon">🚀</div>
+                <h3>¡Pasajero confirmado!</h3>
+                <div class="meet-point">
+                  <span class="meet-icon">📍</span>
+                  <div>
+                    <strong>Punto de encuentro</strong>
+                    <p>Esquina Bulnes con Aldunate — frente a farmacia Cruz Verde</p>
+                  </div>
+                </div>
+                <div class="trip-earnings">
+                  <span>Ganas por este viaje</span>
+                  <strong id="trip-earning">$800</strong>
+                </div>
+                <button class="btn btn-outline btn-full" onclick="openChat()">💬 Chatear con pasajero</button>
+                <button class="btn btn-primary btn-full" onclick="finishDriverRide()">Simular viaje completado →</button>
+              </div>
+            </div>
+
+            <!-- Step 5: Driver rating -->
+            <div class="d-screen" id="d-rating">
+              <div class="rating-screen">
+                <div class="rating-icon">⭐</div>
+                <h3>¿Cómo fue el pasajero?</h3>
+                <div class="star-rating" id="driver-star-rating">
+                  <span class="star" onclick="setDriverRating(1)">★</span>
+                  <span class="star" onclick="setDriverRating(2)">★</span>
+                  <span class="star" onclick="setDriverRating(3)">★</span>
+                  <span class="star" onclick="setDriverRating(4)">★</span>
+                  <span class="star" onclick="setDriverRating(5)">★</span>
+                </div>
+                <textarea class="rating-comment" placeholder="¿Algo que destacar?"></textarea>
+                <button class="btn btn-primary btn-full" onclick="submitDriverRating()">Enviar calificación</button>
+              </div>
+            </div>
+
+            <!-- Step 6: Driver done -->
+            <div class="d-screen" id="d-done">
+              <div class="done-screen">
+                <div class="done-icon">💰</div>
+                <h3>¡Viaje completado!</h3>
+                <div class="savings-card">
+                  <span>Recibiste</span>
+                  <strong id="earned-amount">$800</strong>
+                  <span>de aporte</span>
+                </div>
+                <div class="points-card">
+                  <span>🏆 Ganaste 20 puntos de reputación</span>
+                </div>
+                <button class="btn btn-primary btn-full" onclick="resetDriver()">Publicar otro viaje</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEGURIDAD -->
+  <section class="section section-safety" id="seguridad">
+    <div class="section-inner">
+      <div class="section-label">Tu seguridad primero</div>
+      <h2 class="section-title">Diseñado para que viajes tranquilo/a</h2>
+      <div class="safety-grid">
+        <div class="safety-card">
+          <div class="safety-icon">✅</div>
+          <h3>Verificación de identidad</h3>
+          <p>Conductores y pasajeros verifican su RUT y teléfono. El badge ✓ confirma usuarios reales.</p>
+        </div>
+        <div class="safety-card">
+          <div class="safety-icon">👩</div>
+          <h3>Modo mujer</h3>
+          <p>Mujeres pueden filtrar para ver solo conductoras o viajar exclusivamente con otras mujeres.</p>
+        </div>
+        <div class="safety-card">
+          <div class="safety-icon">📤</div>
+          <h3>Comparte tu viaje</h3>
+          <p>Envía un link de seguimiento en tiempo real a un contacto de confianza antes de partir.</p>
+        </div>
+        <div class="safety-card">
+          <div class="safety-icon">📍</div>
+          <h3>Puntos públicos</h3>
+          <p>WeGo! sugiere puntos de encuentro en lugares concurridos y visibles, nunca en sitios aislados.</p>
+        </div>
+        <div class="safety-card">
+          <div class="safety-icon">⭐</div>
+          <h3>Rating bidireccional</h3>
+          <p>Tanto conductores como pasajeros se califican mutuamente. Sin historial positivo, no hay viaje.</p>
+        </div>
+        <div class="safety-card">
+          <div class="safety-icon">🆘</div>
+          <h3>Botón de emergencia</h3>
+          <p>En cualquier momento durante el viaje puedes activar una alerta que notifica a contactos y a WeGo!.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="section section-cta">
+    <div class="cta-box">
+      <h2>WeGo! llega a Temuco</h2>
+      <p>Únete a la lista de espera y sé de los primeros en probar la app completa.</p>
+      <div class="cta-form">
+        <input type="email" placeholder="tu@correo.cl" id="waitlist-email"/>
+        <button class="btn btn-primary" onclick="joinWaitlist()">Quiero unirme</button>
+      </div>
+      <p class="cta-note" id="waitlist-msg"></p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <a class="nav-logo" href="#">WeGo<span>!</span></a>
+      <p>© 2025 WeGo! · Temuco, Chile · Demo de concepto</p>
+      <div class="footer-links">
+        <a href="#">Términos</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CHAT MODAL -->
+  <div class="modal-overlay hidden" id="chat-modal" onclick="closeModal('chat-modal')">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3>💬 Chat</h3>
+        <button class="modal-close" onclick="closeModal('chat-modal')">✕</button>
+      </div>
+      <div class="chat-messages" id="chat-messages">
+        <div class="msg msg-other">Hola, ¿estarás en el punto de encuentro puntual?</div>
+        <div class="msg msg-me">Sí, llegaré 5 minutos antes 👍</div>
+        <div class="msg msg-other">Perfecto, yo también. Nos vemos allá.</div>
+      </div>
+      <div class="chat-input-row">
+        <input type="text" id="chat-input" placeholder="Escribe un mensaje..." onkeydown="if(event.key==='Enter') sendMessage()"/>
+        <button class="btn btn-primary" onclick="sendMessage()">→</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHARE MODAL -->
+  <div class="modal-overlay hidden" id="share-modal" onclick="closeModal('share-modal')">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3>📤 Compartir mi viaje</h3>
+        <button class="modal-close" onclick="closeModal('share-modal')">✕</button>
+      </div>
+      <div class="share-content">
+        <p>Envía este link a un contacto de confianza para que pueda seguir tu ruta en tiempo real:</p>
+        <div class="share-link">
+          <span>wego.cl/seguimiento/abc123</span>
+          <button onclick="copyLink()">Copiar</button>
+        </div>
+        <div class="share-apps">
+          <button class="share-app-btn" onclick="closeModal('share-modal')">📱 WhatsApp</button>
+          <button class="share-app-btn" onclick="closeModal('share-modal')">💬 SMS</button>
+          <button class="share-app-btn" onclick="closeModal('share-modal')">📧 Email</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGIN MODAL -->
+  <div class="modal-overlay hidden" id="login-modal" onclick="closeModal('login-modal')">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3>Ingresar a WeGo!</h3>
+        <button class="modal-close" onclick="closeModal('login-modal')">✕</button>
+      </div>
+      <div class="form-group">
+        <label>Teléfono o correo</label>
+        <input type="text" placeholder="+56 9 1234 5678"/>
+      </div>
+      <div class="form-group">
+        <label>Contraseña</label>
+        <input type="password" placeholder="••••••••"/>
+      </div>
+      <button class="btn btn-primary btn-full" onclick="closeModal('login-modal'); showToast('¡Bienvenido/a de vuelta!')">Ingresar</button>
+      <p style="text-align:center; margin-top:1rem; font-size:0.875rem; color:#666">¿No tienes cuenta? <a href="#" onclick="closeModal('login-modal'); openModal('register-modal')" style="color:#FF6B35">Regístrate gratis</a></p>
+    </div>
+  </div>
+
+  <!-- REGISTER MODAL -->
+  <div class="modal-overlay hidden" id="register-modal" onclick="closeModal('register-modal')">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3>Crear cuenta en WeGo!</h3>
+        <button class="modal-close" onclick="closeModal('register-modal')">✕</button>
+      </div>
+      <div class="form-group">
+        <label>Nombre completo</label>
+        <input type="text" placeholder="María González"/>
+      </div>
+      <div class="form-group">
+        <label>Teléfono</label>
+        <input type="tel" placeholder="+56 9 1234 5678"/>
+      </div>
+      <div class="form-group">
+        <label>Correo electrónico</label>
+        <input type="email" placeholder="tu@correo.cl"/>
+      </div>
+      <div class="form-group">
+        <label>Contraseña</label>
+        <input type="password" placeholder="Mínimo 8 caracteres"/>
+      </div>
+      <button class="btn btn-primary btn-full" onclick="closeModal('register-modal'); showToast('¡Cuenta creada! Bienvenido/a a WeGo! 🎉')">Crear cuenta gratis</button>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast hidden" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
