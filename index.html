@@ -18,6 +18,7 @@
       <div class="nav-links">
         <a href="#como-funciona">Cómo funciona</a>
         <a href="#seguridad">Seguridad</a>
+        <a href="#quienes-somos">Quiénes somos</a>
         <button class="btn btn-outline" onclick="openModal('login-modal')">Ingresar</button>
         <button class="btn btn-primary" onclick="openModal('register-modal')">Registrarse</button>
       </div>
@@ -28,6 +29,7 @@
     <div class="nav-mobile" id="nav-mobile">
       <a href="#como-funciona" onclick="toggleMenu()">Cómo funciona</a>
       <a href="#seguridad" onclick="toggleMenu()">Seguridad</a>
+      <a href="#quienes-somos" onclick="toggleMenu()">Quiénes somos</a>
       <button class="btn btn-outline" onclick="toggleMenu(); openModal('login-modal')">Ingresar</button>
       <button class="btn btn-primary" onclick="toggleMenu(); openModal('register-modal')">Registrarse</button>
     </div>
@@ -538,6 +540,47 @@
           <div class="safety-icon">🆘</div>
           <h3>Botón de emergencia</h3>
           <p>En cualquier momento durante el viaje puedes activar una alerta que notifica a contactos y a WeGo!.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIÉNES SOMOS / PITCH -->
+  <section class="section section-team" id="quienes-somos">
+    <div class="section-inner">
+      <div class="section-label">Nuestro Propósito</div>
+      <h2 class="section-title">¿Quiénes están detrás de WeGo!?</h2>
+
+      <!-- Bloque Problema / Solución para Pitch -->
+      <div class="pitch-grid">
+        <div class="pitch-card">
+          <h3>🚗 El Problema</h3>
+          <p>Temuco sufre de alta congestión vehicular, transporte público ineficiente en horas punta y altos costos de movilidad individual. Cada día, miles de autos circulan con 3 o 4 asientos vacíos de camino al centro, universidades o clínicas.</p>
+        </div>
+        <div class="pitch-card highlight">
+          <h3>💡 Nuestra Solución</h3>
+          <p>Una plataforma de carpooling urbano que conecta asientos vacíos con personas que van en la misma dirección. Optimizamos rutas, reducimos la huella de carbono y creamos una comunidad de confianza para dividir los costos del viaje.</p>
+        </div>
+      </div>
+
+      <!-- Bloque Equipo -->
+      <h3 class="team-title">El Equipo Fundador</h3>
+      <div class="team-grid">
+        <div class="team-card">
+          <!-- Usamos avatares dinámicos para el ejemplo, puedes cambiarlos por tus fotos reales -->
+          <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=juan&backgroundColor=FF6B35" alt="CEO" class="team-avatar"/>
+          <h4>Tu Nombre</h4>
+          <span>CEO & Negocios</span>
+        </div>
+        <div class="team-card">
+          <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=maria&backgroundColor=FFB085" alt="CTO" class="team-avatar"/>
+          <h4>Socio / Integrante 2</h4>
+          <span>CTO & Desarrollo</span>
+        </div>
+        <div class="team-card">
+          <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=carlos&backgroundColor=FFD6C4" alt="COO" class="team-avatar"/>
+          <h4>Socio / Integrante 3</h4>
+          <span>COO & Operaciones</span>
         </div>
       </div>
     </div>
