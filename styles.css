@@ -945,6 +945,114 @@ input[type="time"] {
 .safety-card h3 { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; margin-bottom: 0.375rem; }
 .safety-card p { font-size: 0.825rem; color: var(--mid); line-height: 1.6; }
 
+/* ===== PITCH / TEAM SECTION ===== */
+.section-team {
+  background: var(--bg);
+}
+
+.pitch-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.pitch-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2.5rem 2rem;
+  transition: all var(--transition);
+}
+
+.pitch-card.highlight {
+  border-color: var(--orange);
+  box-shadow: 0 4px 24px rgba(255,107,53,0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.pitch-card.highlight::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--orange);
+}
+
+.pitch-card h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.35rem;
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.pitch-card.highlight h3 {
+  color: var(--orange);
+}
+
+.pitch-card p {
+  color: var(--mid);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.team-title {
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.team-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+  border-color: var(--orange-light);
+}
+
+.team-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  margin: 0 auto 1.25rem;
+  border: 3px solid var(--orange-pale);
+  background: var(--bg-soft);
+  object-fit: cover;
+}
+
+.team-card h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: 0.25rem;
+}
+
+.team-card span {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--orange);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 /* ===== CTA SECTION ===== */
 .section-cta {
   background: var(--dark);
@@ -1170,6 +1278,10 @@ input[type="time"] {
   .safety-grid { grid-template-columns: repeat(2,1fr); }
   .nav-links { display: none; }
   .nav-burger { display: flex; }
+}
+@media (max-width: 768px) {
+  .pitch-grid { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: 1fr; max-width: 340px; margin: 0 auto; }
 }
 @media (max-width: 580px) {
   .steps { grid-template-columns: 1fr; }
