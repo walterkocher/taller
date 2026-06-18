@@ -1008,7 +1008,7 @@ input[type="time"] {
 
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr); /* Cambiado a 4 columnas */
   gap: 1.5rem;
 }
 
@@ -1278,14 +1278,15 @@ input[type="time"] {
   .safety-grid { grid-template-columns: repeat(2,1fr); }
   .nav-links { display: none; }
   .nav-burger { display: flex; }
+  .team-grid { grid-template-columns: repeat(2, 1fr); max-width: 600px; margin: 0 auto;} /* Tablet: 2 columnas */
 }
 @media (max-width: 768px) {
   .pitch-grid { grid-template-columns: 1fr; }
-  .team-grid { grid-template-columns: 1fr; max-width: 340px; margin: 0 auto; }
 }
 @media (max-width: 580px) {
   .steps { grid-template-columns: 1fr; }
   .safety-grid { grid-template-columns: 1fr; }
   .cta-form { flex-direction: column; }
   .hero-stats { flex-wrap: wrap; gap: 1rem; }
+  .team-grid { grid-template-columns: 1fr; max-width: 340px; margin: 0 auto; } /* Celular: 1 columna */
 }
